@@ -70,15 +70,16 @@ const Home = async () => {
       <div className="py-6 space-y-4">
         <div className="flex justify-between items-center px-5">
           <h2 className="font-semibold">Restaurantes recomendados</h2>
-          <Link href={'/restaurant/recomended'}>
-            <Button
-              variant="ghost"
-              className="text-primary h-fit p-0 hover:bg-transparent"
-            >
+          <Button
+            variant="ghost"
+            className="text-primary h-fit p-0 hover:bg-transparent"
+            asChild
+          >
+            <Link href={'/restaurant/recomended'}>
               Ver todos
               <ChevronRightIcon size={16} />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
         <RestaurantList />
       </div>
