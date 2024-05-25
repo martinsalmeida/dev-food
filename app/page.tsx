@@ -45,13 +45,16 @@ const Home = async () => {
       <div className="py-3 space-y-4">
         <div className="flex justify-between items-center px-5">
           <h2 className="font-semibold">Pedidos recomendados</h2>
-          <Button
-            variant="ghost"
-            className="text-primary h-fit p-0 hover:bg-transparent"
-          >
-            Ver todos
-            <ChevronRightIcon size={16} />
-          </Button>
+
+          <Link href={'/products/recommended'}>
+            <Button
+              variant="ghost"
+              className="text-primary h-fit p-0 hover:bg-transparent"
+            >
+              Ver todos
+              <ChevronRightIcon size={16} />
+            </Button>
+          </Link>
         </div>
         <div className="px-5">
           <ProductList products={JSON.parse(JSON.stringify(products))} />
