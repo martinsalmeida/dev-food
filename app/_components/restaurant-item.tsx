@@ -12,7 +12,7 @@ interface RestaurantItemProps {
 const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
   return (
     <Link className="min-w-[256px]" href={`/restaurant/${restaurant.id}`}>
-      <div className="w-full max-w-[266px] space-y-3">
+      <div className="w-full space-y-4">
         <div className="w-full h-[136px] relative">
           <Image
             src={restaurant.imageUrl}
