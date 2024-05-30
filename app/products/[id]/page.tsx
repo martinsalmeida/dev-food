@@ -44,10 +44,6 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
         product={JSON.parse(JSON.stringify(product))}
         complementaryProduct={JSON.parse(JSON.stringify(juices))}
       />
-
-      <div className="mt-6 mb-6 px-5">
-        <Button className="w-full font-semibold">Adicionar a sacola</Button>
-      </div>
     </div>
   );
 };
