@@ -18,45 +18,51 @@ const Cart = () => {
         ))}
       </div>
 
-      <div className="mt-6">
-        <Card>
-          <CardContent className="p-5 space-y-2">
-            <div className="flex items-center justify-between text-xs ">
-              <span className="text-muted-foreground">SubTotal</span>
-              <span>{formatCurrency(subTotalPrice)}</span>
-            </div>
+      {products.length > 0 ? (
+        <div className="mt-6">
+          <Card>
+            <CardContent className="p-5 space-y-2">
+              <div className="flex items-center justify-between text-xs ">
+                <span className="text-muted-foreground">SubTotal</span>
+                <span>{formatCurrency(subTotalPrice)}</span>
+              </div>
 
-            <Separator className="h-[0.5px] bg-[#ddd]" />
+              <Separator className="h-[0.5px] bg-[#ddd]" />
 
-            <div className="flex items-center justify-between text-xs ">
-              <span className="text-muted-foreground">Entrega</span>
-              {Number(products[0].restaurant.deliveryFee) === 0 ? (
-                <span className="uppercase text-primary">Gratis</span>
-              ) : (
-                formatCurrency(Number(products[0].restaurant.deliveryFee))
-              )}
-            </div>
+              <div className="flex items-center justify-between text-xs ">
+                <span className="text-muted-foreground">Entrega</span>
+                {Number(products[0]?.restaurant.deliveryFee) === 0 ? (
+                  <span className="uppercase text-primary">Gratis</span>
+                ) : (
+                  formatCurrency(Number(products[0]?.restaurant.deliveryFee))
+                )}
+              </div>
 
-            <Separator className="h-[0.5px] bg-[#ddd]" />
+              <Separator className="h-[0.5px] bg-[#ddd]" />
 
-            <div className="flex items-center justify-between text-xs ">
-              <span className="text-muted-foreground">Descontos</span>
-              <span>-{formatCurrency(totalDiscount)}</span>
-            </div>
+              <div className="flex items-center justify-between text-xs ">
+                <span className="text-muted-foreground">Descontos</span>
+                <span>-{formatCurrency(totalDiscount)}</span>
+              </div>
 
-            <Separator className="h-[0.5px] bg-[#ddd]" />
+              <Separator className="h-[0.5px] bg-[#ddd]" />
 
-            <div className="flex items-center justify-between text-xs ">
-              <span className="font-semibold">Total</span>
-              <span className="font-semibold">
-                {formatCurrency(totalPrice)}
-              </span>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="flex items-center justify-between text-xs ">
+                <span className="font-semibold">Total</span>
+                <span className="font-semibold">
+                  {formatCurrency(totalPrice)}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
 
-        <Button className="mt-6 w-full">Finalizar pedido</Button>
-      </div>
+          <Button className="mt-6 w-full">Finalizar pedido</Button>
+        </div>
+      ) : (
+        <h2 className="text-center font-medium mt-10">
+          Você ainda não adicionou nenhum produto a sua sacola.
+        </h2>
+      )}
     </div>
   );
 };
