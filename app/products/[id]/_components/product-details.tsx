@@ -147,7 +147,7 @@ const ProductDetails = ({
           <ProductList products={complementaryProduct} />
         </div>
 
-        <div className="mt-6 mb-6">
+        <div className="mt-6">
           <Button
             className="w-full font-semibold"
             onClick={handleAddToCartClick}
