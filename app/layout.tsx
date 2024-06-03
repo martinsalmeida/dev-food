@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from './_context/cart';
-import { SessionProvider } from 'next-auth/react';
+import AuthProvider from './_providers/auth';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
+        <AuthProvider>
           <CartProvider>{children}</CartProvider>
-        </SessionProvider>
+        </AuthProvider>
       </body>
     </html>
   );
