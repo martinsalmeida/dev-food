@@ -53,6 +53,7 @@ const ProductDetails = ({
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     useState(false);
+
   const { products, addProductToCard } = useContext(CartContext);
 
   const handleIncreaseQuantityClick = () =>
