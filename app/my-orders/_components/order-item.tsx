@@ -3,12 +3,16 @@
 import { AvatarImage } from '@/app/_components/ui/avatar';
 import { Button } from '@/app/_components/ui/button';
 import { Card, CardContent } from '@/app/_components/ui/card';
+import { CartContext } from '@/app/_context/cart';
 import { formatCurrency } from '@/app/_helper/price';
 import { Order, OrderStatus, Prisma } from '@prisma/client';
 import { Avatar } from '@radix-ui/react-avatar';
 import { Separator } from '@radix-ui/react-separator';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useContext } from 'react';
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -24,6 +28,20 @@ interface OrderItemProps {
 }
 
 const OrderItem = ({ order }: OrderItemProps) => {
+  const { addProductToCard } = useContext(CartContext);
+
+  const router = useRouter();
+
+  const handleReOrderClick = () => {
+    for (const orderProduct of order.products) {
+      addProductToCard({
+        product: { ...orderProduct.product, restaurant: order.restaurant },
+        quantity: orderProduct.quantity,
+      });
+    }
+    router.push(`/restaurant/${order.restaurantId}`);
+  };
+
   const getOrderStatusLabel = (status: OrderStatus) => {
     switch (status) {
       case 'CANCELLED':
@@ -44,7 +62,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
       <CardContent className="p-5">
         <div
           className={`w-fit rounded-full bg-muted px-2 py-1 text-muted-foreground ${
-            order.status === 'CONFIRMED' && 'bg-green-500 text-white'
+            order.status !== 'CONFIRMED' && 'bg-green-500 text-white'
           }`}
         >
           <span className="block text-xs font-semibold">
@@ -103,7 +121,13 @@ const OrderItem = ({ order }: OrderItemProps) => {
 
         <div className="flex items-center justify-between">
           <span>{formatCurrency(Number(order.totalPrice))}</span>
-          <Button variant="ghost" size="sm" className="text-primary">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-primary"
+            onClick={handleReOrderClick}
+            disabled={order.status !== 'FINISHED'}
+          >
             Refazer pedido
           </Button>
         </div>
