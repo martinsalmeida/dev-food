@@ -31,9 +31,16 @@ const Header = () => {
 
   return (
     <div className="flex justify-between pt-6 px-5">
-      <div className="relative h-[30px] w-[100px]">
+      <div className="relative h-[30px] w-auto">
         <Link href={'/'}>
-          <Image src="/logo.png" alt="DevFood" fill className="object-cover" />
+          <Image
+            src="/logo.png"
+            alt="DevFood"
+            className="object-cover"
+            width={100}
+            height={30}
+            style={{ width: '100%', height: 'auto' }}
+          />
         </Link>
       </div>
 
@@ -118,9 +125,12 @@ const Header = () => {
                 <Button
                   variant="ghost"
                   className="w-full justify-start gap-3 rounded-full text-sm"
+                  asChild
                 >
-                  <HeartIcon size={16} />
-                  <span>Restaurantes favoritos</span>
+                  <Link href="/my-favorite-restaurants">
+                    <HeartIcon size={16} />
+                    <span>Restaurantes favoritos</span>
+                  </Link>
                 </Button>
               </>
             )}

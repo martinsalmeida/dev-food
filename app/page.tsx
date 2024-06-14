@@ -30,13 +30,13 @@ const Home = async () => {
   return (
     <>
       <Header />;
-      <div className="px-5 pt-6">
+      <div className="px-5 ">
         <Search />
       </div>
-      <div className="px-5 py-3">
+      <div className="px-5 pt-5 pb-4">
         <CategoryList />
       </div>
-      <div className="px-5 py-3">
+      <div className="px-5">
         <PromoBanner
           src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas!"

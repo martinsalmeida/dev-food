@@ -15,6 +15,9 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
           alt={category.name}
           width={30}
           height={30}
+          style={{
+            width: 'auto',
+          }}
         />
         <span className="font-semibold text-sm">{category.name}</span>
       </div>
